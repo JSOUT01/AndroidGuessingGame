@@ -6,4 +6,7 @@
     <string name="guess_a_number">Guess a number</string>
     <string name="_1_100">1 - 100</string>
     <string name="submit">SUBMIT</string>
+    <string name="restart">Restart</string>
+    <string name="the_winning_number_was_1_d">The winning number was %1$d</string>
+    <string name="you_won">You Won!!!!</string>
 </resources>
