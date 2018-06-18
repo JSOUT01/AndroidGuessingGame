@@ -13,6 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/you_won"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/number_textview"
         app:layout_constraintStart_toStartOf="@+id/number_textview"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,32 +27,32 @@
         android:text="@string/the_winning_number_was_1_d"
         android:textSize="18sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/winning_imageview"
+        app:layout_constraintEnd_toEndOf="@+id/winning_imageview"
+        app:layout_constraintStart_toStartOf="@+id/winning_imageview"
         app:layout_constraintTop_toBottomOf="@+id/results_textview" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/winning_imageview"
         android:layout_width="277dp"
-        android:layout_height="277dp"
+        android:layout_height="274dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/restart_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/thumb"
-        tools:layout_editor_absoluteY="118dp"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/restart_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
         android:text="@string/restart"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

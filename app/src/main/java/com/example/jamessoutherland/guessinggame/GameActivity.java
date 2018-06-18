@@ -20,6 +20,7 @@ public class GameActivity extends AppCompatActivity {
     private final int MAX_GUESS_COUNT = 4;
     public static final String winningNumber = "WINNING_NUMBER";
 
+    ///TODO fix Restarting game
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +29,23 @@ public class GameActivity extends AppCompatActivity {
         guessButton = findViewById(R.id.submit_guess_button);
         clue = findViewById(R.id.clue_textview);
         guess = findViewById(R.id.guess_edittext);
-        //this generates a random number between 1 and 100.
-        generatedNumber = (int) Math.ceil(Math.random() * 100);
-        //Toast.makeText(this, Integer.toString(generatedNumber), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, Integer.toString(generatedNumber), Toast.LENGTH_SHORT).show();
 
         setListener();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //this generates a random number between 1 and 100.
+        generatedNumber = (int) Math.ceil(Math.random() * 100);
+
+        numberOfGuesses = 0;
+    clue.setVisibility(View.INVISIBLE);
+    guess.setText("");
 
     }
 
@@ -51,14 +63,14 @@ public class GameActivity extends AppCompatActivity {
         try {
             int userGuess = Integer.parseInt(guess.getText().toString());
             if (userGuess > 100 || userGuess <= 0) {
-                clue.setText("Enter a number between 1 and 100");
+                clue.setText(R.string.enter_number_1_100);
                 clue.setVisibility(View.VISIBLE);
                 guess.setText("");
             } else {
                 checkGuess(userGuess);
             }
         } catch (NumberFormatException nfe) {
-            clue.setText("Enter a number");
+            clue.setText(R.string.enter_number);
             clue.setVisibility(View.VISIBLE);
         }
     }
@@ -76,20 +88,22 @@ public class GameActivity extends AppCompatActivity {
             startActivity(loser);
 
         } else if (userGuess < generatedNumber) {
-            ///TODO Update clue TextView to say higher, set visibility to VISIBLE, set guess EditText to "" and increment numberOfGuesses by 1
+            // Update clue TextView to say higher, set visibility to VISIBLE, set guess EditText to "" and increment numberOfGuesses by 1
 
             clue.setText(R.string.higher);
             clue.setVisibility(View.VISIBLE);
             guess.setText("");
             numberOfGuesses++;
 
+            Toast.makeText(this, getString(R.string.chances_left,(5 - numberOfGuesses)), Toast.LENGTH_LONG).show();
         } else if (userGuess > generatedNumber) {
-            ///TODO Update clue TextView to say lower, set visibility to VISIBLE, set guess EditText to "" and increment numberOfGuesses by 1
+            // Update clue TextView to say lower, set visibility to VISIBLE, set guess EditText to "" and increment numberOfGuesses by 1
 
-            clue.setText(R.string.);
+            clue.setText(R.string.Lower);
             clue.setVisibility(View.VISIBLE);
             guess.setText("");
-            numberOfGuesses--;
+            numberOfGuesses++;
+            Toast.makeText(this, getString(R.string.chances_left,(5 - numberOfGuesses)), Toast.LENGTH_LONG).show();
         }
 
     }
